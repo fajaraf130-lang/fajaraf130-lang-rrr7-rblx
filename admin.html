@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+Admin RRR7 RBLX
+</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+<h1>
+Admin Panel RRR7 RBLX⚡
+</h1>
+
+
+<div id="list">
+
+Loading...
+
+</div>
+
+
+</div>
+
+
+<script src=
+"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js">
+</script>
+
+
+<script src=
+"https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js">
+</script>
+
+
+<script src="firebase.js"></script>
+
+
+<script>
+
+
+db.ref("orders")
+.on("value",snap=>{
+
+
+let html="";
+
+
+snap.forEach(data=>{
+
+
+let o=data.val();
+
+
+html+=`
+
+<div class="card">
+
+<h3>${o.id}</h3>
+
+<p>
+Username:
+${o.username}
+</p>
+
+<p>
+Robux:
+${o.robux}
+</p>
+
+<p>
+Harga:
+Rp ${o.harga}
+</p>
+
+<p>
+Status:
+${o.status}
+</p>
+
+
+</div>
+
+`;
+
+
+});
+
+
+document.getElementById("list")
+.innerHTML=html;
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
