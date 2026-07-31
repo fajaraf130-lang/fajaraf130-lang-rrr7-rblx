@@ -1,5 +1,18 @@
-let jumlah = 0;
+let jumlah = "";
 let harga = 0;
+
+
+function pilih(r, h){
+
+jumlah = r + " Robux";
+harga = h;
+
+document.getElementById("robux").value = jumlah;
+
+document.getElementById("harga").value =
+"Rp " + h.toLocaleString("id-ID");
+
+}
 
 
 function order(){
@@ -11,43 +24,40 @@ let wa =
 document.getElementById("wa").value;
 
 
-if(username=="" || wa==""){
+if(username=="" || wa=="" || jumlah==""){
 
-alert("Lengkapi data dulu");
+alert("Lengkapi data terlebih dahulu");
+
 return;
 
 }
 
 
-let id =
-"RRR7-" + Date.now();
+let nomorAdmin = "6287882922046";
+// Ganti dengan nomor WhatsApp toko
 
 
-let data={
+let pesan = 
+`RRR7 RBLX ORDER⚡
 
-id:id,
+Username Roblox:
+${username}
 
-username:username,
+Jumlah:
+${jumlah}
 
-whatsapp:wa,
+Harga:
+Rp ${harga.toLocaleString("id-ID")}
 
-robux:jumlah,
+Nomor Pembeli:
+${wa}
 
-harga:harga,
-
-status:"Pending"
-
-};
-
-
-db.ref("orders/"+id)
-.set(data);
+Silahkan cek QRIS untuk pembayaran.`;
 
 
-
-alert(
-"Order berhasil dibuat\nID Order: "
-+id
+window.open(
+"https://wa.me/"+nomorAdmin+
+"?text="+encodeURIComponent(pesan)
 );
 
 
