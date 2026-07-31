@@ -2,59 +2,53 @@ let jumlah = 0;
 let harga = 0;
 
 
-function pilih(r,h){
-
-jumlah=r;
-harga=h;
-
-document.getElementById("robux").value =
-jumlah+" Robux";
-
-document.getElementById("harga").value =
-"Rp "+harga.toLocaleString();
-
-}
-
-
 function order(){
 
-let user =
+let username =
 document.getElementById("username").value;
 
 let wa =
 document.getElementById("wa").value;
 
 
-if(user=="" || wa==""){
+if(username=="" || wa==""){
 
-alert("Isi username dan WhatsApp dulu");
-
+alert("Lengkapi data dulu");
 return;
 
 }
 
 
-let pesan =
-`Halo RRR7 RBLX⚡
-
-Order Robux
-
-Username:
-${user}
-
-Robux:
-${jumlah}
-
-Total:
-Rp ${harga.toLocaleString()}
-
-WA:
-${wa}`;
+let id =
+"RRR7-" + Date.now();
 
 
-window.open(
-"https://wa.me/628xxxxxxxxxx?text="
-+encodeURIComponent(pesan)
+let data={
+
+id:id,
+
+username:username,
+
+whatsapp:wa,
+
+robux:jumlah,
+
+harga:harga,
+
+status:"Pending"
+
+};
+
+
+db.ref("orders/"+id)
+.set(data);
+
+
+
+alert(
+"Order berhasil dibuat\nID Order: "
++id
 );
+
 
 }
